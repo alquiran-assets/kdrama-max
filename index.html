@@ -626,13 +626,23 @@
       position: relative;
       transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
     }
-    .price-card:hover { transform: translateY(-4px); border-color: #333; box-shadow: 0 16px 48px rgba(0,0,0,0.5); }
+    .price-card:hover { transform: translateY(-8px); border-color: #333; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+    @keyframes cardGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(233,30,140,0.2), 0 20px 60px rgba(0,0,0,0.3); }
+      50% { box-shadow: 0 0 40px rgba(233,30,140,0.5), 0 20px 60px rgba(0,0,0,0.4); }
+    }
+    @keyframes fadeUpCard {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .price-card.fade-up.visible { animation: fadeUpCard 0.6s ease forwards; }
     .price-card.featured {
       border-color: #e91e8c;
       background: linear-gradient(145deg, #180010, #0d0018);
-      transform: scale(1.03);
+      transform: scale(1.05);
+      animation: cardGlow 2.5s ease-in-out infinite;
     }
-    .price-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+    .price-card.featured:hover { transform: scale(1.05) translateY(-8px); animation: none; box-shadow: 0 20px 60px rgba(233,30,140,0.4); }
     .featured-badge {
       position: absolute;
       top: -13px;
@@ -1275,16 +1285,16 @@
       <div class="hero-right">
         <div class="fan-cards-wrap">
           <div class="fan-card">
-            <img src="https://loveflixbr.vercel.app/4.webp" alt="Dorama 1">
+            <img src="card1.webp" alt="The Invincible Legend">
           </div>
           <div class="fan-card">
-            <img src="https://loveflixbr.vercel.app/7.webp" alt="Dorama 2">
+            <img src="card2.webp" alt="Glory on the Line">
           </div>
           <div class="fan-card">
-            <img src="https://loveflixbr.vercel.app/1.webp" alt="Dorama 3">
+            <img src="card3.webp" alt="Run Into the CEO's Secret Playroom">
           </div>
           <div class="fan-card">
-            <img src="https://loveflixbr.vercel.app/10.webp" alt="Dorama 4">
+            <img src="card4.webp" alt="Vengeance Awaits His Return">
           </div>
         </div>
       </div>
@@ -1510,7 +1520,7 @@
             <li><span class="check-pink">✓</span> Mini Dramas em alta</li>
             <li><span class="check-pink">✓</span> Acesso antecipado a novos episódios</li>
             <li><span class="check-pink">✓</span> Sem anúncios</li>
-            <li><span class="check-pink">✓</span> Suporte prioritário via WhatsApp</li>
+            <li><span class="check-pink">✓</span> Suporte prioritário via Telegram</li>
           </ul>
           <a href="https://ggcheckout.app/SEU-PRODUTO-SEMANAL" class="btn-plan btn-plan-pink">Quero o Plus Semanal</a>
         </div>
@@ -1695,6 +1705,19 @@
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.12 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ── PRICING CARDS ANIMATION ──
+    const priceCards = document.querySelectorAll('.price-card.fade-up');
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, index * 150);
+        }
+      });
+    }, { threshold: 0.1 });
+    priceCards.forEach(card => cardObserver.observe(card));
 
     // ── STICKY HEADER ──
     window.addEventListener('scroll', () => {
