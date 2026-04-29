@@ -492,51 +492,366 @@
       margin-top: 2px;
     }
 
-    /* ─── BENEFITS ─── */
+    /* ─── BENEFITS (PREMIUM) ─── */
     .benefits-section {
-      background: var(--bg2);
-      padding: 64px 24px;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, #0f0f23 0%, #1a0f2e 50%, #0a0a0a 100%);
+      padding: 80px 24px;
+      border-top: 1px solid rgba(229,57,53,0.2);
+      border-bottom: 1px solid rgba(229,57,53,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .benefits-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(233,30,140,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
     }
     .benefits-inner {
       max-width: 1100px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
     .benefits-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 48px;
     }
     .benefit-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px;
-      transition: border-color 0.2s;
+      background: linear-gradient(145deg, rgba(26,26,26,0.6), rgba(15,15,15,0.8));
+      border: 1px solid rgba(233,30,140,0.15);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
-    .benefit-card:hover { border-color: var(--red); }
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(233,30,140,0.4), transparent);
+    }
+    .benefit-card:hover {
+      border-color: var(--red);
+      background: linear-gradient(145deg, rgba(233,30,140,0.08), rgba(233,30,140,0.04));
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(233,30,140,0.15);
+    }
     .benefit-icon {
-      width: 48px;
-      height: 48px;
-      background: rgba(229,57,53,0.12);
-      border-radius: 12px;
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(145deg, rgba(233,30,140,0.2), rgba(233,30,140,0.08));
+      border: 1px solid rgba(233,30,140,0.3);
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      margin-bottom: 16px;
+      font-size: 28px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+    .benefit-card:hover .benefit-icon {
+      background: linear-gradient(145deg, rgba(233,30,140,0.3), rgba(233,30,140,0.15));
+      transform: scale(1.08);
     }
     .benefit-title {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .benefit-desc {
       font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+    }
+
+    /* ─── TRENDING SERIES ─── */
+    .trending-section {
+      padding: 80px 24px;
+      background: linear-gradient(to bottom, #0a0a0a, #0f0f23);
+      border-bottom: 1px solid var(--border);
+    }
+    .trending-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .series-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .series-card {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 2/3;
+      background: var(--bg3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+    }
+    .series-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .series-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--red);
+      box-shadow: 0 20px 50px rgba(233,30,140,0.2);
+    }
+    .series-card:hover img { transform: scale(1.08); }
+    .series-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--red);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 900;
+      padding: 4px 10px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 2;
+    }
+    .series-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+      padding: 20px 10px 10px;
+      transform: translateY(10px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .series-card:hover .series-info {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .series-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ─── MULTI-PLATFORM MOCKUP ─── */
+    .platform-section {
+      padding: 100px 24px;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a0f2e 100%);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .platform-section::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(233,30,140,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .platform-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .platform-text h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .platform-text p {
+      font-size: 15px;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .platform-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .platform-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: #d0d0d0;
+    }
+    .platform-list li::before {
+      content: '✓';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background: rgba(233,30,140,0.2);
+      border-radius: 50%;
+      color: var(--red);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .mockup-container {
+      position: relative;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mockup-device {
+      position: absolute;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(233,30,840,0.3);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+      transition: all 0.4s ease;
+    }
+    .mockup-desktop {
+      width: 480px;
+      height: 320px;
+      z-index: 3;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f0f23 100%);
+    }
+    .mockup-tablet {
+      width: 320px;
+      height: 420px;
+      z-index: 2;
+      left: 10%;
+      top: 30%;
+      background: linear-gradient(135deg, #16213e 0%, #0f0f23 100%);
+      border-radius: 24px;
+      transform: rotateZ(-15deg);
+    }
+    .mockup-mobile {
+      width: 220px;
+      height: 380px;
+      z-index: 1;
+      right: 5%;
+      top: 40%;
+      background: linear-gradient(135deg, #1a0f2e 0%, #0a0a0a 100%);
+      border-radius: 32px;
+      transform: rotateZ(8deg);
+    }
+    .mockup-content {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(233,30,140,0.05), rgba(233,30,840,0.02));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 16px;
+    }
+    @media (max-width: 768px) {
+      .platform-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .mockup-container { height: 350px; }
+      .mockup-desktop { width: 360px; height: 240px; }
+      .mockup-tablet { width: 240px; height: 315px; left: 5%; }
+      .mockup-mobile { width: 160px; height: 280px; right: 0; }
+    }
+
+    /* ─── GUARANTEES SECTION ─── */
+    .guarantees-section {
+      padding: 80px 24px;
+      background: #0a0a0a;
+      border-bottom: 1px solid var(--border);
+    }
+    .guarantees-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .guarantees-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+    .guarantee-card {
+      background: linear-gradient(145deg, rgba(233,30,840,0.1), rgba(233,30,840,0.03));
+      border: 2px solid var(--red);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .guarantee-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+    }
+    .guarantee-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(233,30,840,0.25);
+    }
+    .guarantee-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    .guarantee-title {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 12px;
+      color: var(--red);
+    }
+    .guarantee-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .guarantee-subtext {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      font-style: italic;
     }
 
     /* ─── TESTIMONIALS ─── */
@@ -1422,6 +1737,139 @@
           <div class="benefit-icon">♾️</div>
           <div class="benefit-title">Acesso Vitalício</div>
           <p class="benefit-desc">Pague uma vez e tenha acesso para sempre. Sem mensalidades, sem cobranças recorrentes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TRENDING SERIES ─── -->
+  <section class="trending-section">
+    <div class="trending-inner">
+      <div class="section-label">Agora em alta</div>
+      <h2 class="section-title fade-up">Séries que estão bombando</h2>
+      <p class="section-sub fade-up">Os doramas e mini dramas que os fãs não param de assistir</p>
+      <div class="series-grid">
+        <div class="series-card fade-up">
+          <img src="https://loveflixbr.vercel.app/1.webp" alt="Série em Alta">
+          <span class="series-badge">🔥 EM ALTA</span>
+          <div class="series-info">
+            <div class="series-name">Romance Inesperado</div>
+          </div>
+        </div>
+        <div class="series-card fade-up">
+          <img src="https://loveflixbr.vercel.app/2.webp" alt="Série em Alta">
+          <span class="series-badge">🔥 EM ALTA</span>
+          <div class="series-info">
+            <div class="series-name">Segredo do Bilionário</div>
+          </div>
+        </div>
+        <div class="series-card fade-up">
+          <img src="https://loveflixbr.vercel.app/3.webp" alt="Série em Alta">
+          <span class="series-badge">🔥 EM ALTA</span>
+          <div class="series-info">
+            <div class="series-name">A Dominante</div>
+          </div>
+        </div>
+        <div class="series-card fade-up">
+          <img src="https://loveflixbr.vercel.app/4.webp" alt="Série em Alta">
+          <span class="series-badge">🔥 EM ALTA</span>
+          <div class="series-info">
+            <div class="series-name">Amor Além do Acordo</div>
+          </div>
+        </div>
+        <div class="series-card fade-up">
+          <img src="https://loveflixbr.vercel.app/5.webp" alt="Série em Alta">
+          <span class="series-badge">🔥 EM ALTA</span>
+          <div class="series-info">
+            <div class="series-name">Identidade Oculta</div>
+          </div>
+        </div>
+        <div class="series-card fade-up">
+          <img src="https://loveflixbr.vercel.app/6.webp" alt="Série em Alta">
+          <span class="series-badge">⭐ EXCLUSIVA</span>
+          <div class="series-info">
+            <div class="series-name">A Lenda Invencível</div>
+          </div>
+        </div>
+        <div class="series-card fade-up">
+          <img src="https://loveflixbr.vercel.app/7.webp" alt="Série em Alta">
+          <span class="series-badge">⭐ EXCLUSIVA</span>
+          <div class="series-info">
+            <div class="series-name">Esposa Inesperada</div>
+          </div>
+        </div>
+        <div class="series-card fade-up">
+          <img src="https://loveflixbr.vercel.app/8.webp" alt="Série em Alta">
+          <span class="series-badge">⭐ EXCLUSIVA</span>
+          <div class="series-info">
+            <div class="series-name">Meu Chefe Secreto</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MULTI-PLATFORM ACCESS ─── -->
+  <section class="platform-section">
+    <div class="platform-inner">
+      <div class="platform-text">
+        <div class="section-label">Acesso Multiplataforma</div>
+        <h2 class="fade-up">Assista em qualquer lugar</h2>
+        <p class="fade-up">Celular, tablet ou computador — você escolhe onde e quando assistir seus doramas favoritos. Sem app para instalar, tudo via Telegram.</p>
+        <ul class="platform-list fade-up">
+          <li>Sincronização automática entre dispositivos</li>
+          <li>Qualidade HD e 4K em todos os aparelhos</li>
+          <li>Assista offline quando quiser</li>
+          <li>Continue de onde parou em qualquer tela</li>
+          <li>Sem limites de dispositivos simultâneos</li>
+          <li>Interface otimizada para cada tela</li>
+        </ul>
+        <a href="https://ggcheckout.app/SEU-PRODUTO" class="btn-primary fade-up" style="display:inline-flex;">🎬 COMEÇAR AGORA</a>
+      </div>
+      <div class="mockup-container">
+        <div class="mockup-device mockup-desktop">
+          <div class="mockup-content">
+            💻 Desktop<br>Melhor para maratona
+          </div>
+        </div>
+        <div class="mockup-device mockup-tablet">
+          <div class="mockup-content">
+            📱 Tablet<br>Tela grande
+          </div>
+        </div>
+        <div class="mockup-device mockup-mobile">
+          <div class="mockup-content">
+            📱 Mobile<br>Na bolsa
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── GUARANTEES ─── -->
+  <section class="guarantees-section">
+    <div class="guarantees-inner">
+      <div class="section-label">Compre com confiança</div>
+      <h2 class="section-title fade-up">Garantias que você merece</h2>
+      <p class="section-sub fade-up">Sua satisfação é nossa prioridade. Se não gostar, devolvemos 100%.</p>
+      <div class="guarantees-grid">
+        <div class="guarantee-card fade-up">
+          <div class="guarantee-icon">🛡️</div>
+          <div class="guarantee-title">7 Dias de Garantia</div>
+          <div class="guarantee-desc">Não gostou? Devolvemos 100% do seu dinheiro em até 7 dias, sem perguntas e sem burocracia. Risco zero.</div>
+          <div class="guarantee-subtext">Garantia incondicional</div>
+        </div>
+        <div class="guarantee-card fade-up">
+          <div class="guarantee-icon">♾️</div>
+          <div class="guarantee-title">Acesso Vitalício</div>
+          <div class="guarantee-desc">Pague uma vez e tenha acesso para sempre. Sem mensalidades, sem cobranças recorrentes, sem surpresas. Seu catálogo é seu para a vida toda.</div>
+          <div class="guarantee-subtext">Investimento único</div>
+        </div>
+        <div class="guarantee-card fade-up">
+          <div class="guarantee-icon">⚡</div>
+          <div class="guarantee-title">Acesso Imediato</div>
+          <div class="guarantee-desc">Confirmou o pagamento? Recebe o link em menos de 5 minutos. Sem espera, sem burocracias. Comece a assistir agora mesmo.</div>
+          <div class="guarantee-subtext">Desbloqueado instantaneamente</div>
         </div>
       </div>
     </div>
