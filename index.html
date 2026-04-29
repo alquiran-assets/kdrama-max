@@ -867,47 +867,88 @@
       font-style: italic;
     }
 
-    /* ─── TESTIMONIALS ─── */
+    /* ─── TESTIMONIALS (Carousel) ─── */
     .testimonials-section {
-      padding: 64px 24px;
-      max-width: 1100px;
-      margin: 0 auto;
+      padding: 80px 0;
+      background: linear-gradient(to bottom, #0a0a0a, #0f0f23, #0a0a0a);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
     }
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    .testimonials-header {
+      text-align: center;
+      padding: 0 24px;
+      margin-bottom: 52px;
+    }
+    .testimonial-track-wrap {
+      overflow: hidden;
+      width: 100%;
+      -webkit-mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+      mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    }
+    .testimonial-track {
+      display: flex;
       gap: 20px;
-      margin-top: 40px;
+      width: max-content;
+      padding: 8px 0;
     }
+    .ttrack-left  { animation: scrollLeft  38s linear infinite; }
+    .ttrack-right { animation: scrollRight 38s linear infinite; }
+    .testimonial-track:hover { animation-play-state: paused; }
+
     .testimonial-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 24px 28px;
+      width: 340px;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+      cursor: default;
     }
-    .testimonial-stars { color: var(--gold); font-size: 14px; margin-bottom: 12px; }
+    .testimonial-card:hover {
+      background: rgba(233,30,140,0.06);
+      border-color: rgba(233,30,140,0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .testimonial-stars {
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
     .testimonial-text {
       font-size: 14px;
-      color: #d0d0d0;
-      line-height: 1.65;
-      margin-bottom: 16px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: 20px;
     }
     .testimonial-author {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 16px;
     }
     .author-avatar {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: var(--bg3);
+      background: linear-gradient(135deg, rgba(233,30,140,0.3), rgba(233,30,140,0.1));
+      border: 1.5px solid rgba(233,30,140,0.3);
       overflow: hidden;
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: #e91e8c;
     }
     .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .author-name { font-size: 13px; font-weight: 700; }
-    .author-meta { font-size: 11px; color: var(--text-muted); }
+    .author-name { font-size: 13px; font-weight: 700; color: #fff; }
+    .author-meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 
     /* ─── PRICING (DramaVibe style) ─── */
     .pricing-section {
@@ -2023,50 +2064,49 @@
     </div>
   </section>
 
-  <!-- ─── TESTIMONIALS ─── -->
+  <!-- ─── TESTIMONIALS (Carousel) ─── -->
   <section class="testimonials-section">
-    <div class="section-label">Depoimentos</div>
-    <h2 class="section-title fade-up">O que nossos membros dizem</h2>
-    <p class="section-sub fade-up">Mais de 9.500 pessoas já estão maratonando</p>
-    <div class="testimonials-grid">
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Nunca pensei que encontraria tantos doramas em um só lugar! Assisto todo dia e sempre tem coisa nova. Melhor investimento que já fiz!"</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">
-            <img src="https://loveflixbr.vercel.app/p1.webp" alt="">
-          </div>
-          <div>
-            <div class="author-name">Ana Paula S.</div>
-            <div class="author-meta">Membro há 3 meses</div>
-          </div>
-        </div>
+    <div class="testimonials-header">
+      <div class="section-label" style="justify-content:center;">Depoimentos</div>
+      <h2 class="section-title fade-up">O que nossos membros dizem</h2>
+      <p class="section-sub fade-up" style="margin: 0 auto;">Mais de 9.500 pessoas já estão maratonando</p>
+    </div>
+
+    <!-- Faixa 1: direita para esquerda -->
+    <div class="testimonial-track-wrap">
+      <div class="testimonial-track ttrack-left">
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Nunca pensei que encontraria tantos doramas em um só lugar! Assisto todo dia e sempre tem coisa nova. Melhor investimento que já fiz!"</p><div class="testimonial-author"><div class="author-avatar"><img src="https://loveflixbr.vercel.app/p1.webp" alt=""></div><div><div class="author-name">Ana Paula S.</div><div class="author-meta">Membro há 3 meses</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Os mini dramas são viciantes demais! Fico acordada até tarde maratonando. O atendimento é super rápido quando preciso de ajuda."</p><div class="testimonial-author"><div class="author-avatar"><img src="https://loveflixbr.vercel.app/p2.webp" alt=""></div><div><div class="author-name">Camila R.</div><div class="author-meta">Membro há 5 meses</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Vale cada centavo! Por R$19,90 tive acesso a tudo. Já assistia doramas no YouTube, agora tenho tudo organizado em um grupo só."</p><div class="testimonial-author"><div class="author-avatar"><img src="https://loveflixbr.vercel.app/p3.webp" alt=""></div><div><div class="author-name">Fernanda M.</div><div class="author-meta">Membro há 1 mês</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Encontrei séries que não existem em nenhuma plataforma paga! A curadoria é incrível e o grupo é super ativo com discussões e novidades."</p><div class="testimonial-author"><div class="author-avatar">J</div><div><div class="author-name">Juliana C.</div><div class="author-meta">Membro há 2 meses</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Sou viciada em doramas há anos e esse grupo superou todas as plataformas que já assinei. Conteúdo novo todo dia, sem exceção."</p><div class="testimonial-author"><div class="author-avatar">P</div><div><div class="author-name">Patricia L.</div><div class="author-meta">Membro há 4 meses</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Me surpreendi com a qualidade! Indicado por uma amiga e não me arrependo. Os mini dramas de 1 minuto são perfeitos para a hora do almoço."</p><div class="testimonial-author"><div class="author-avatar">R</div><div><div class="author-name">Raquel F.</div><div class="author-meta">Membro há 6 meses</div></div></div></div>
+        <!-- duplicados para loop infinito -->
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Nunca pensei que encontraria tantos doramas em um só lugar! Assisto todo dia e sempre tem coisa nova. Melhor investimento que já fiz!"</p><div class="testimonial-author"><div class="author-avatar"><img src="https://loveflixbr.vercel.app/p1.webp" alt=""></div><div><div class="author-name">Ana Paula S.</div><div class="author-meta">Membro há 3 meses</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Os mini dramas são viciantes demais! Fico acordada até tarde maratonando. O atendimento é super rápido quando preciso de ajuda."</p><div class="testimonial-author"><div class="author-avatar"><img src="https://loveflixbr.vercel.app/p2.webp" alt=""></div><div><div class="author-name">Camila R.</div><div class="author-meta">Membro há 5 meses</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Vale cada centavo! Por R$19,90 tive acesso a tudo. Já assistia doramas no YouTube, agora tenho tudo organizado em um grupo só."</p><div class="testimonial-author"><div class="author-avatar"><img src="https://loveflixbr.vercel.app/p3.webp" alt=""></div><div><div class="author-name">Fernanda M.</div><div class="author-meta">Membro há 1 mês</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Encontrei séries que não existem em nenhuma plataforma paga! A curadoria é incrível e o grupo é super ativo com discussões e novidades."</p><div class="testimonial-author"><div class="author-avatar">J</div><div><div class="author-name">Juliana C.</div><div class="author-meta">Membro há 2 meses</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Sou viciada em doramas há anos e esse grupo superou todas as plataformas que já assinei. Conteúdo novo todo dia, sem exceção."</p><div class="testimonial-author"><div class="author-avatar">P</div><div><div class="author-name">Patricia L.</div><div class="author-meta">Membro há 4 meses</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Me surpreendi com a qualidade! Indicado por uma amiga e não me arrependo. Os mini dramas de 1 minuto são perfeitos para a hora do almoço."</p><div class="testimonial-author"><div class="author-avatar">R</div><div><div class="author-name">Raquel F.</div><div class="author-meta">Membro há 6 meses</div></div></div></div>
       </div>
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Os mini dramas são viciantes demais! Fico acordada até tarde maratonando. O atendimento também é super rápido quando preciso de ajuda."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">
-            <img src="https://loveflixbr.vercel.app/p2.webp" alt="">
-          </div>
-          <div>
-            <div class="author-name">Camila R.</div>
-            <div class="author-meta">Membro há 5 meses</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Vale cada centavo! Por R$19,90 tive acesso a tudo. Já assistia doramas espalhados pelo YouTube, agora tenho tudo organizado em um grupo só."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">
-            <img src="https://loveflixbr.vercel.app/p3.webp" alt="">
-          </div>
-          <div>
-            <div class="author-name">Fernanda M.</div>
-            <div class="author-meta">Membro há 1 mês</div>
-          </div>
-        </div>
+    </div>
+
+    <!-- Faixa 2: esquerda para direita -->
+    <div class="testimonial-track-wrap" style="margin-top: 20px;">
+      <div class="testimonial-track ttrack-right">
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Assisti Crash Landing on You em 2 dias! Tinha parado no episódio 5 por não ter onde assistir. Aqui encontrei e maratonei tudo."</p><div class="testimonial-author"><div class="author-avatar">M</div><div><div class="author-name">Mariana T.</div><div class="author-meta">Membro há 3 semanas</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Indico para todas as minhas amigas! O grupo tem recomendações personalizadas, discussões por série e conteúdo novo o tempo todo."</p><div class="testimonial-author"><div class="author-avatar">B</div><div><div class="author-name">Beatriz A.</div><div class="author-meta">Membro há 7 meses</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Finalmente um lugar com mini dramas de qualidade! Eles têm até legenda em português. Minha série favorita do momento está lá."</p><div class="testimonial-author"><div class="author-avatar">L</div><div><div class="author-name">Larissa K.</div><div class="author-meta">Membro há 2 meses</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"O melhor investimento que já fiz em entretenimento. R$19,90 e tenho acesso a mais de 10 mil títulos. Não tem comparação com nenhum streaming."</p><div class="testimonial-author"><div class="author-avatar">C</div><div><div class="author-name">Carolina V.</div><div class="author-meta">Membro há 5 meses</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Comecei pelo plano grátis e em 2 dias já assine o vitalício. O catálogo é absurdo e a qualidade das séries é impressionante."</p><div class="testimonial-author"><div class="author-avatar">T</div><div><div class="author-name">Tânia S.</div><div class="author-meta">Membro há 1 mês</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Minha filha me apresentou esse grupo e agora somos as duas viciadas! A gente assiste juntas e discute os episódios. Virou programa de família."</p><div class="testimonial-author"><div class="author-avatar">D</div><div><div class="author-name">Débora N.</div><div class="author-meta">Membro há 8 meses</div></div></div></div>
+        <!-- duplicados para loop -->
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Assisti Crash Landing on You em 2 dias! Tinha parado no episódio 5 por não ter onde assistir. Aqui encontrei e maratonei tudo."</p><div class="testimonial-author"><div class="author-avatar">M</div><div><div class="author-name">Mariana T.</div><div class="author-meta">Membro há 3 semanas</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Indico para todas as minhas amigas! O grupo tem recomendações personalizadas, discussões por série e conteúdo novo o tempo todo."</p><div class="testimonial-author"><div class="author-avatar">B</div><div><div class="author-name">Beatriz A.</div><div class="author-meta">Membro há 7 meses</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Finalmente um lugar com mini dramas de qualidade! Eles têm até legenda em português. Minha série favorita do momento está lá."</p><div class="testimonial-author"><div class="author-avatar">L</div><div><div class="author-name">Larissa K.</div><div class="author-meta">Membro há 2 meses</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"O melhor investimento que já fiz em entretenimento. R$19,90 e tenho acesso a mais de 10 mil títulos. Não tem comparação com nenhum streaming."</p><div class="testimonial-author"><div class="author-avatar">C</div><div><div class="author-name">Carolina V.</div><div class="author-meta">Membro há 5 meses</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Comecei pelo plano grátis e em 2 dias já assine o vitalício. O catálogo é absurdo e a qualidade das séries é impressionante."</p><div class="testimonial-author"><div class="author-avatar">T</div><div><div class="author-name">Tânia S.</div><div class="author-meta">Membro há 1 mês</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Minha filha me apresentou esse grupo e agora somos as duas viciadas! A gente assiste juntas e discute os episódios. Virou programa de família."</p><div class="testimonial-author"><div class="author-avatar">D</div><div><div class="author-name">Débora N.</div><div class="author-meta">Membro há 8 meses</div></div></div></div>
       </div>
     </div>
   </section>
@@ -2100,8 +2140,8 @@
             <li><span class="check">✓</span> Catálogo ilimitado de doramas</li>
             <li><span class="check">✓</span> Mini Dramas em alta</li>
             <li><span class="check">✓</span> Atualizações diárias</li>
-            <li class="feat-locked"><span class="check">—</span> Acesso vitalício</li>
-            <li class="feat-locked"><span class="check">—</span> Suporte VIP</li>
+            <li class="feat-locked"><span class="check">✕</span> Acesso vitalício</li>
+            <li class="feat-locked"><span class="check">✕</span> Suporte VIP</li>
           </ul>
           <a href="https://ggcheckout.app/SEU-PRODUTO-MENSAL" class="btn-plan btn-plan-outline">Assinar Mensal</a>
         </div>
@@ -2125,7 +2165,7 @@
             <li><span class="check">✓</span> Mini Dramas exclusivos</li>
             <li><span class="check">✓</span> Acesso antecipado a lançamentos</li>
             <li><span class="check">✓</span> Suporte prioritário via Telegram</li>
-            <li class="feat-locked"><span class="check">—</span> Acesso vitalício</li>
+            <li class="feat-locked"><span class="check">✕</span> Acesso vitalício</li>
           </ul>
           <a href="https://ggcheckout.app/SEU-PRODUTO-ANUAL" class="btn-plan btn-plan-outline">Assinar Anual</a>
         </div>
