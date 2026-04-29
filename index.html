@@ -32,35 +32,78 @@
 
     /* ─── ANNOUNCEMENT BAR ─── */
     .announcement-bar {
-      background: #f5a800;
-      color: #1a1a1a;
-      text-align: center;
-      padding: 10px 50px 10px 16px;
+      background: linear-gradient(90deg, #e91e8c 0%, #c2185b 30%, #e53935 60%, #f59e0b 100%);
+      background-size: 300% 100%;
+      animation: barGradient 6s ease infinite;
+      color: #fff;
+      padding: 0 50px 0 0;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.3px;
+      position: relative;
+      overflow: hidden;
+      height: 40px;
+      display: flex;
+      align-items: center;
+    }
+    @keyframes barGradient {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .bar-slider {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .bar-slide {
+      position: absolute;
+      width: 100%;
+      text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      position: relative;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
     }
-    .announcement-bar .countdown {
-      background: var(--red);
-      color: #fff;
+    .bar-slide.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .bar-slide.exit {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    .bar-badge {
+      background: rgba(0,0,0,0.25);
+      border-radius: 100px;
+      padding: 3px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .bar-countdown {
+      background: rgba(0,0,0,0.3);
       border-radius: 6px;
       padding: 3px 10px;
-      font-size: 13px;
-      font-weight: 800;
+      font-size: 12px;
+      font-weight: 900;
       letter-spacing: 1px;
-      margin-left: 4px;
+      font-variant-numeric: tabular-nums;
     }
     .announcement-bar .bar-close {
       position: absolute;
       right: 12px;
       top: 50%;
       transform: translateY(-50%);
-      background: var(--red);
+      background: rgba(0,0,0,0.25);
       color: #fff;
       border: none;
       border-radius: 50%;
@@ -73,7 +116,10 @@
       align-items: center;
       justify-content: center;
       line-height: 1;
+      z-index: 2;
+      transition: background 0.2s;
     }
+    .announcement-bar .bar-close:hover { background: rgba(0,0,0,0.4); }
 
     /* ─── HEADER ─── */
     header {
@@ -1644,6 +1690,45 @@
     .cnew { background: var(--red); color: #fff; }
     .cdub { background: #FFD700; color: #000; }
 
+    /* ─── SOCIAL PROOF TOAST ─── */
+    .sp-toast {
+      position: fixed;
+      bottom: 90px;
+      left: 20px;
+      background: rgba(15,15,15,0.97);
+      border: 1px solid rgba(233,30,140,0.3);
+      border-radius: 14px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 9000;
+      max-width: 300px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 0 1px rgba(233,30,140,0.1);
+      transform: translateX(-340px);
+      transition: transform 0.5s cubic-bezier(0.34,1.2,0.64,1);
+      pointer-events: none;
+    }
+    .sp-toast.show { transform: translateX(0); }
+    .sp-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e91e8c, #e53935);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 900;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .sp-text { flex: 1; }
+    .sp-name { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .sp-action { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.4; }
+    .sp-plan { color: #e91e8c; font-weight: 700; }
+    .sp-time { font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 3px; }
+
     /* Scrollbar */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
@@ -1654,39 +1739,75 @@
 
   <!-- ─── POPUP EXIT-INTENT ─── -->
   <div class="popup-overlay" id="popupOverlay">
-    <div class="popup" id="popup">
+    <div class="popup" id="popup" style="background:linear-gradient(160deg,#130008 0%,#0d0d0d 60%,#100800 100%); border:1px solid rgba(233,30,140,0.25); max-width:460px;">
       <button class="popup-close" onclick="closePopup()">✕</button>
-      <div style="text-align:center; margin-bottom: 8px;">
-        <span class="popup-top-badge">🔥 OFERTA EXCLUSIVA — SÓ AGORA</span>
+
+      <!-- Badge topo -->
+      <div style="text-align:center; margin-bottom:16px;">
+        <span class="popup-top-badge" style="background:linear-gradient(135deg,#e91e8c,#e53935); font-size:12px; padding:6px 20px; letter-spacing:1.5px;">🔥 OFERTA EXCLUSIVA — SÓ AGORA</span>
       </div>
-      <h2>Espera! Temos um <span class="popup-green">desconto especial</span> para você!</h2>
-      <p class="popup-sub">Antes de ir, aproveite o Pacote Completo por um preço único e irresistível.</p>
-      <div class="popup-price-row">
-        <span class="popup-original">R$ 24,90</span>
-        <span class="popup-price"><span class="currency">R$</span>19<small style="font-size:28px;font-weight:900">,90</small></span>
+
+      <!-- Título -->
+      <h2 style="font-size:clamp(1.4rem,4vw,1.8rem); font-weight:900; text-align:center; line-height:1.2; margin-bottom:10px; letter-spacing:-0.5px;">
+        Espera! Acesso <span style="color:#e91e8c;">Vitalício</span> por apenas
+      </h2>
+
+      <!-- Preço com destaque -->
+      <div style="text-align:center; margin-bottom:6px;">
+        <span style="font-size:13px; color:rgba(255,255,255,0.4); text-decoration:line-through; margin-right:8px;">R$ 49,90</span>
+        <span style="font-size:56px; font-weight:900; letter-spacing:-3px; color:#fff; line-height:1;">
+          <span style="font-size:22px; vertical-align:top; margin-top:14px; display:inline-block; font-weight:700;">R$</span>19<span style="font-size:32px;">,90</span>
+        </span>
       </div>
-      <p class="popup-price-type">Pagamento único • Acesso para sempre</p>
-      <ul class="popup-features">
-        <li><span class="pcheck">✓</span> Catálogo completo com +100 séries</li>
-        <li><span class="pcheck">✓</span> Acesso vitalício — sem mensalidades</li>
+      <p style="text-align:center; font-size:12px; color:rgba(255,255,255,0.45); margin-bottom:16px;">Pagamento único • Acesso para sempre</p>
+
+      <!-- Countdown urgência -->
+      <div style="background:linear-gradient(135deg,rgba(233,30,140,0.15),rgba(229,57,53,0.1)); border:1px solid rgba(233,30,140,0.3); border-radius:12px; padding:12px 16px; text-align:center; margin-bottom:20px;">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.6); margin-bottom:8px;">⏱️ Esta oferta expira em</div>
+        <div style="display:flex; justify-content:center; gap:8px; align-items:center;">
+          <div style="text-align:center;">
+            <div id="popup-h" style="font-size:32px; font-weight:900; color:#e91e8c; letter-spacing:-1px; line-height:1; font-variant-numeric:tabular-nums;">00</div>
+            <div style="font-size:9px; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:1px; margin-top:2px;">horas</div>
+          </div>
+          <div style="font-size:28px; font-weight:900; color:rgba(233,30,140,0.5); line-height:1; margin-bottom:12px;">:</div>
+          <div style="text-align:center;">
+            <div id="popup-m" style="font-size:32px; font-weight:900; color:#e91e8c; letter-spacing:-1px; line-height:1; font-variant-numeric:tabular-nums;">00</div>
+            <div style="font-size:9px; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:1px; margin-top:2px;">min</div>
+          </div>
+          <div style="font-size:28px; font-weight:900; color:rgba(233,30,140,0.5); line-height:1; margin-bottom:12px;">:</div>
+          <div style="text-align:center;">
+            <div id="popup-s" style="font-size:32px; font-weight:900; color:#e91e8c; letter-spacing:-1px; line-height:1; font-variant-numeric:tabular-nums;">00</div>
+            <div style="font-size:9px; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:1px; margin-top:2px;">seg</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <ul class="popup-features" style="margin-bottom:20px; gap:8px;">
+        <li><span class="pcheck">✓</span> +100 séries e doramas exclusivos</li>
+        <li><span class="pcheck">✓</span> Acesso vitalício sem mensalidades</li>
         <li><span class="pcheck">✓</span> Acesso imediato após o pagamento</li>
+        <li><span class="pcheck">✓</span> Qualidade Full HD e 4K</li>
         <li><span class="pfire">🔥</span> <span class="bonus-label">BÔNUS Atualizações TODO DIA</span></li>
         <li><span class="pfire">🔥</span> <span class="bonus-label">BÔNUS Mini Dramas EM ALTA</span></li>
-        <li><span class="pcheck">✓</span> Doramas exclusivos</li>
-        <li><span class="pcheck">✓</span> Qualidade Full HD e 4K</li>
-        <li><span class="pcheck">✓</span> Suporte prioritário</li>
       </ul>
+
       <a href="https://ggcheckout.app/SEU-PRODUTO" class="btn-popup-cta">
-        🛒 QUERO O DESCONTO AGORA
+        🛒 QUERO ACESSO VITALÍCIO AGORA
       </a>
-      <button class="popup-decline" onclick="closePopup()">Não, prefiro pagar o preço cheio depois</button>
+      <button class="popup-decline" onclick="closePopup()">Não, prefiro perder essa oferta</button>
     </div>
   </div>
 
   <!-- ─── ANNOUNCEMENT BAR ─── -->
   <div class="announcement-bar" id="announcementBar">
-    🔥 Oferta Disponível até as 23:59 — <strong id="barDate"></strong>
-    <span class="countdown" id="countdown">00:00:00</span>
+    <div class="bar-slider" id="barSlider">
+      <div class="bar-slide active">🔥 Oferta por tempo limitado <span class="bar-countdown" id="countdown">00:00:00</span> <span class="bar-badge">GARANTA AGORA</span></div>
+      <div class="bar-slide">🎬 +100 séries coreanas que você NÃO acha na Netflix <span class="bar-badge">EXCLUSIVO</span></div>
+      <div class="bar-slide">💎 Plano Vitalício por apenas R$19,90 <span class="bar-badge">PAGAMENTO ÚNICO</span></div>
+      <div class="bar-slide">📱 Acesso imediato pelo Telegram, em qualquer dispositivo <span class="bar-badge">SEM APP EXTRA</span></div>
+      <div class="bar-slide">⚡ Já são +9.500 membros maratonando agora <span class="bar-badge">COMUNIDADE ATIVA</span></div>
+    </div>
     <button class="bar-close" onclick="document.getElementById('announcementBar').style.display='none'">✕</button>
   </div>
 
@@ -2264,27 +2385,58 @@
   </div>
 
   <script>
-    // ── COUNTDOWN TIMER ──
+    // ── COUNTDOWN TIMER (barra + popup) ──
+    function getTimerEnd(key, minutes) {
+      const saved = localStorage.getItem(key);
+      if (saved) return new Date(saved);
+      const d = new Date();
+      d.setMinutes(d.getMinutes() + minutes);
+      localStorage.setItem(key, d);
+      return d;
+    }
+
+    const barEnd = getTimerEnd('kdrama_bar_timer', 47);
+    const popupEnd = getTimerEnd('kdrama_popup_timer', 23);
+
     function updateCountdown() {
-      const end = localStorage.getItem('KDRAMA MAX_timer')
-        ? new Date(localStorage.getItem('KDRAMA MAX_timer'))
-        : (() => { const d = new Date(); d.setMinutes(d.getMinutes() + 47); d.setSeconds(d.getSeconds() + 23); localStorage.setItem('KDRAMA MAX_timer', d); return d; })();
-
       const now = new Date();
-      const diff = end - now;
 
-      if (diff <= 0) {
-        document.getElementById('countdown').textContent = '00h 00m 00s';
-        return;
-      }
+      // Barra
+      const barDiff = barEnd - now;
+      const bh = Math.max(0, Math.floor(barDiff / 3600000)).toString().padStart(2, '0');
+      const bm = Math.max(0, Math.floor((barDiff % 3600000) / 60000)).toString().padStart(2, '0');
+      const bs = Math.max(0, Math.floor((barDiff % 60000) / 1000)).toString().padStart(2, '0');
+      const barEl = document.getElementById('countdown');
+      if (barEl) barEl.textContent = `${bh}h ${bm}m ${bs}s`;
 
-      const h = Math.floor(diff / 3600000).toString().padStart(2, '0');
-      const m = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
-      const s = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
-      document.getElementById('countdown').textContent = `${h}h ${m}m ${s}s`;
+      // Popup
+      const pDiff = popupEnd - now;
+      const ph = Math.max(0, Math.floor(pDiff / 3600000)).toString().padStart(2, '0');
+      const pm = Math.max(0, Math.floor((pDiff % 3600000) / 60000)).toString().padStart(2, '0');
+      const ps = Math.max(0, Math.floor((pDiff % 60000) / 1000)).toString().padStart(2, '0');
+      const popH = document.getElementById('popup-h');
+      const popM = document.getElementById('popup-m');
+      const popS = document.getElementById('popup-s');
+      if (popH) popH.textContent = ph;
+      if (popM) popM.textContent = pm;
+      if (popS) popS.textContent = ps;
     }
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    // ── BAR SLIDER ──
+    (function() {
+      const slides = document.querySelectorAll('.bar-slide');
+      let current = 0;
+      if (!slides.length) return;
+      setInterval(() => {
+        slides[current].classList.remove('active');
+        slides[current].classList.add('exit');
+        setTimeout(() => slides[current].classList.remove('exit'), 600);
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+      }, 3500);
+    })();
 
     // ── POPUP ──
     function showPopup() {
