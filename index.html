@@ -290,8 +290,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(229,57,53,0.12);
-      border: 1px solid rgba(229,57,53,0.35);
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.3);
       border-radius: 100px;
       padding: 6px 16px;
       font-size: 12px;
@@ -646,6 +646,54 @@
       font-size: 14px;
       color: rgba(255,255,255,0.65);
       line-height: 1.7;
+    }
+
+    /* ─── URGENCY BAR ─── */
+    .urgency-bar {
+      background: linear-gradient(90deg, #0f0f0f 0%, #1a0a2e 30%, #2d0a1e 70%, #0f0f0f 100%);
+      border-top: 1px solid rgba(236,72,153,0.3);
+      border-bottom: 1px solid rgba(139,92,246,0.3);
+      height: 48px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    .urgency-track {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      animation: urgScroll 45s linear infinite;
+      gap: 0;
+    }
+    @keyframes urgScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .urgency-slide {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 80px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .urg-timer {
+      background: rgba(236,72,153,0.25);
+      border: 1px solid rgba(236,72,153,0.5);
+      border-radius: 6px;
+      padding: 2px 10px;
+      color: #f9a8d4;
+      font-weight: 900;
+      letter-spacing: 1px;
+      font-variant-numeric: tabular-nums;
+    }
+    .urg-highlight {
+      color: #4ade80;
+      font-weight: 900;
     }
 
     /* ─── TRENDING SERIES ─── */
@@ -1067,33 +1115,45 @@
       z-index: 2;
     }
     .price-card.featured {
-      border: 2px solid;
-      border-image: linear-gradient(135deg, rgba(236,72,153,0.8), rgba(139,92,246,0.8)) 1;
-      background: radial-gradient(circle at 30% 50%, rgba(236,72,153,0.3) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 50%, rgba(139,92,246,0.3) 0%, transparent 50%),
+      border: none;
+      border-radius: 8px;
+      text-align: center;
+      background: radial-gradient(circle at 30% 50%, rgba(236,72,153,0.25) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 50%, rgba(139,92,246,0.25) 0%, transparent 50%),
                   linear-gradient(135deg, #2d1b4e 0%, #1a0a3e 100%);
       z-index: 1;
-      overflow: visible;
-      animation: borderGlow 3s ease-in-out infinite;
-    }
-    @keyframes borderGlow {
-      0%, 100% { box-shadow: 0 0 20px rgba(236,72,153,0.4), inset 0 0 20px rgba(139,92,246,0.1); }
-      50% { box-shadow: 0 0 40px rgba(139,92,246,0.6), inset 0 0 30px rgba(236,72,153,0.15); }
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(236,72,153,0.2), 0 0 60px rgba(139,92,246,0.1);
     }
     .price-card.featured::before {
-      display: none;
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 10px;
+      background: conic-gradient(
+        from 0deg,
+        #ec4899,
+        #8b5cf6,
+        #22c55e,
+        #8b5cf6,
+        #ec4899
+      );
+      animation: borderSpin 3s linear infinite;
+      z-index: -2;
     }
     .price-card.featured::after {
       content: '';
       position: absolute;
-      inset: 0;
-      border-radius: 16px;
-      background: inherit;
+      inset: 2px;
+      border-radius: 7px;
+      background: radial-gradient(circle at 30% 50%, rgba(236,72,153,0.2) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 50%, rgba(139,92,246,0.2) 0%, transparent 50%),
+                  linear-gradient(135deg, #2d1b4e 0%, #1a0a3e 100%);
       z-index: -1;
     }
     .price-card.featured:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 24px 64px rgba(245,158,11,0.2), 0 0 40px rgba(245,158,11,0.1);
+      transform: translateY(-6px);
+      box-shadow: 0 0 40px rgba(236,72,153,0.4), 0 0 80px rgba(139,92,246,0.2);
     }
 
     /* Tier header row */
@@ -1266,11 +1326,12 @@
     }
     .btn-plan-outline:hover { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.05); }
     .btn-plan-gold {
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      color: #1a1a1a;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
       font-weight: 800;
+      box-shadow: 0 4px 24px rgba(34,197,94,0.4);
     }
-    .btn-plan-gold:hover { background: linear-gradient(135deg, #fbbf24, #f59e0b); transform: translateY(-1px); }
+    .btn-plan-gold:hover { background: linear-gradient(135deg, #4ade80, #22c55e); transform: translateY(-1px); box-shadow: 0 8px 32px rgba(34,197,94,0.5); }
 
     .guarantee-badge {
       display: inline-flex;
@@ -2060,6 +2121,23 @@
     </div>
   </section>
 
+  <!-- ─── URGENCY BAR ─── -->
+  <div class="urgency-bar" id="urgencyBar">
+    <div class="urgency-track" id="urgencyTrack">
+      <div class="urgency-slide">🔥 OFERTA RELÂMPAGO — Só mais <span class="urg-timer" id="urgTimer1">15:00</span> para garantir acesso Vitalício por apenas R$9,90!</div>
+      <div class="urgency-slide">⚡ Últimas vagas disponíveis! <span class="urg-highlight">+9.500 pessoas</span> já estão assistindo agora</div>
+      <div class="urgency-slide">💎 Acesso VITALÍCIO por R$9,90 — Pagamento único, sem mensalidades, sem pegadinha</div>
+      <div class="urgency-slide">⏰ Oferta encerra em <span class="urg-timer" id="urgTimer2">15:00</span> — Não perca essa chance única!</div>
+      <div class="urgency-slide">🎬 +100 séries que você NÃO encontra na Netflix. Garanta agora antes que a promoção acabe!</div>
+      <!-- duplicar para loop infinito -->
+      <div class="urgency-slide">🔥 OFERTA RELÂMPAGO — Só mais <span class="urg-timer">15:00</span> para garantir acesso Vitalício por apenas R$9,90!</div>
+      <div class="urgency-slide">⚡ Últimas vagas disponíveis! <span class="urg-highlight">+9.500 pessoas</span> já estão assistindo agora</div>
+      <div class="urgency-slide">💎 Acesso VITALÍCIO por R$9,90 — Pagamento único, sem mensalidades, sem pegadinha</div>
+      <div class="urgency-slide">⏰ Oferta encerra em <span class="urg-timer">15:00</span> — Não perca essa chance única!</div>
+      <div class="urgency-slide">🎬 +100 séries que você NÃO encontra na Netflix. Garanta agora antes que a promoção acabe!</div>
+    </div>
+  </div>
+
   <!-- ─── TRENDING SERIES ─── -->
   <section class="trending-section">
     <div class="trending-inner">
@@ -2248,21 +2326,21 @@
         <div class="price-card featured">
           <div class="featured-badge" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #1a1a1a;">⭐ MAIS ESCOLHIDO</div>
           <div style="margin-top: 18px;"></div>
-          <div class="plan-name" style="background: linear-gradient(135deg, #fff, #fde68a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Vitalício</div>
-          <div class="plan-price-row">
-            <div class="plan-price" style="background: linear-gradient(135deg, #fff 60%, #fde68a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"><span class="currency" style="-webkit-text-fill-color: rgba(255,255,255,0.7);">R$</span>9</div>
-            <span class="plan-price-period" style="color: rgba(245,158,11,0.7);">,90<br>único</span>
+          <div class="plan-name" style="text-align:center; color:#fff; font-size:32px;">Vitalício</div>
+          <div class="plan-price-row" style="justify-content:center;">
+            <div class="plan-price" style="color:#fff;"><span class="currency" style="color:rgba(255,255,255,0.8);">R$</span>9</div>
+            <span class="plan-price-period" style="color:rgba(255,255,255,0.6);">,90<br>único</span>
           </div>
-          <div class="plan-period" style="color: rgba(245,158,11,0.6);">Pagamento único. Acesso para sempre.</div>
-          <hr class="plan-divider" style="border-color: rgba(245,158,11,0.2);">
-          <ul class="plan-features">
-            <li><span class="check" style="color:#f59e0b;">✓</span> Tudo dos planos anteriores</li>
-            <li><span class="check" style="color:#f59e0b;">✓</span> Acesso vitalício — para sempre</li>
-            <li><span class="check" style="color:#f59e0b;">✓</span> Sem mensalidades, nunca</li>
-            <li><span class="check" style="color:#f59e0b;">✓</span> Conteúdos exclusivos vitalícios</li>
-            <li><span class="check" style="color:#f59e0b;">✓</span> Suporte VIP dedicado</li>
+          <div class="plan-period" style="text-align:center; color:rgba(255,255,255,0.5);">Pagamento único. Acesso para sempre.</div>
+          <hr class="plan-divider" style="border-color:rgba(255,255,255,0.1);">
+          <ul class="plan-features" style="width:fit-content; margin-left:auto; margin-right:auto;">
+            <li><span class="check" style="color:#ec4899; flex-shrink:0;">✓</span> Acesso vitalício — para sempre</li>
+            <li><span class="check" style="color:#ec4899; flex-shrink:0;">✓</span> +100 séries e mini dramas</li>
+            <li><span class="check" style="color:#ec4899; flex-shrink:0;">✓</span> Sem mensalidades, nunca</li>
+            <li><span class="check" style="color:#ec4899; flex-shrink:0;">✓</span> Conteúdos exclusivos</li>
+            <li><span class="check" style="color:#ec4899; flex-shrink:0;">✓</span> Suporte VIP dedicado</li>
           </ul>
-          <a href="https://mpago.la/1e8QzfK" class="btn-plan btn-plan-gold" style="box-shadow: 0 4px 24px rgba(245,158,11,0.4);">🏆 Quero o Vitalício</a>
+          <a href="https://mpago.la/1e8QzfK" class="btn-plan btn-plan-gold">🎬 Quero o Vitalício</a>
         </div>
 
       </div>
@@ -2344,7 +2422,7 @@
       🎬 ACESSAR AGORA — R$9,90
     </a>
     <p class="fade-up" style="margin-top:16px; font-size:12px; color:#fff;">⚡ Acesso imediato • ♾️ Plano Vitalício • 🔥 +100 séries</p>
-    <p style="margin-top:48px; font-size:13px; color:#fff; font-weight:700;">© 2025 K DRAMA MAX • Todos os direitos reservados</p>
+    <p style="margin-top:48px; font-size:13px; color:#fff; font-weight:700;">© 2026 K DRAMA MAX • Todos os direitos reservados</p>
   </section>
 
   <!-- ─── FOOTER ─── */
@@ -2386,6 +2464,7 @@
 
     const barEnd = getTimerEnd('kdrama_bar_timer', 47);
     const popupEnd = getTimerEnd('kdrama_popup_timer', 23);
+    const urgEnd = getTimerEnd('kdrama_urg_timer', 15);
 
     function updateCountdown() {
       const now = new Date();
@@ -2410,6 +2489,17 @@
       if (popM) popM.textContent = pm;
       if (popS) popS.textContent = ps;
     }
+    // ── URGENCY TIMER ──
+    function updateUrgTimer() {
+      const diff = Math.max(0, urgEnd - new Date());
+      const m = Math.floor(diff / 60000).toString().padStart(2, '0');
+      const s = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+      const val = `${m}:${s}`;
+      document.querySelectorAll('.urg-timer').forEach(el => el.textContent = val);
+    }
+    setInterval(updateUrgTimer, 1000);
+    updateUrgTimer();
+
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
