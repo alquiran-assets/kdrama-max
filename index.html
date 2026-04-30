@@ -73,11 +73,11 @@
       min-width: max-content;
       flex-shrink: 0;
       text-align: center;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 0 100px;
+      padding: 0 120px;
       font-size: 13px;
       font-weight: 700;
       white-space: nowrap;
@@ -1836,9 +1836,9 @@
 
       <!-- Preço com destaque -->
       <div style="text-align:center; margin-bottom:6px;">
-        <span style="font-size:13px; color:rgba(255,255,255,0.4); text-decoration:line-through; margin-right:8px;">R$ 49,90</span>
+        <span style="font-size:13px; color:rgba(255,255,255,0.4); text-decoration:line-through; margin-right:8px;">R$ 19,90</span>
         <span style="font-size:56px; font-weight:900; letter-spacing:-3px; color:#fff; line-height:1;">
-          <span style="font-size:22px; vertical-align:top; margin-top:14px; display:inline-block; font-weight:700;">R$</span>19<span style="font-size:32px;">,90</span>
+          <span style="font-size:22px; vertical-align:top; margin-top:14px; display:inline-block; font-weight:700;">R$</span>9<span style="font-size:32px;">,90</span>
         </span>
       </div>
       <p style="text-align:center; font-size:12px; color:rgba(255,255,255,0.45); margin-bottom:16px;">Pagamento único • Acesso para sempre</p>
@@ -1848,17 +1848,12 @@
         <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.6); margin-bottom:8px;">⏱️ Esta oferta expira em</div>
         <div style="display:flex; justify-content:center; gap:8px; align-items:center;">
           <div style="text-align:center;">
-            <div id="popup-h" style="font-size:32px; font-weight:900; color:#e91e8c; letter-spacing:-1px; line-height:1; font-variant-numeric:tabular-nums;">00</div>
-            <div style="font-size:9px; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:1px; margin-top:2px;">horas</div>
-          </div>
-          <div style="font-size:28px; font-weight:900; color:rgba(233,30,140,0.5); line-height:1; margin-bottom:12px;">:</div>
-          <div style="text-align:center;">
-            <div id="popup-m" style="font-size:32px; font-weight:900; color:#e91e8c; letter-spacing:-1px; line-height:1; font-variant-numeric:tabular-nums;">00</div>
+            <div id="popup-m" style="font-size:48px; font-weight:900; color:#e91e8c; letter-spacing:-2px; line-height:1; font-variant-numeric:tabular-nums;">15</div>
             <div style="font-size:9px; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:1px; margin-top:2px;">min</div>
           </div>
-          <div style="font-size:28px; font-weight:900; color:rgba(233,30,140,0.5); line-height:1; margin-bottom:12px;">:</div>
+          <div style="font-size:36px; font-weight:900; color:rgba(233,30,140,0.5); line-height:1; margin-bottom:12px;">:</div>
           <div style="text-align:center;">
-            <div id="popup-s" style="font-size:32px; font-weight:900; color:#e91e8c; letter-spacing:-1px; line-height:1; font-variant-numeric:tabular-nums;">00</div>
+            <div id="popup-s" style="font-size:48px; font-weight:900; color:#e91e8c; letter-spacing:-2px; line-height:1; font-variant-numeric:tabular-nums;">00</div>
             <div style="font-size:9px; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:1px; margin-top:2px;">seg</div>
           </div>
         </div>
@@ -1961,11 +1956,27 @@
     </div>
   </section>
 
+  <!-- ─── URGENCY BAR ─── -->
+  <div class="urgency-bar" id="urgencyBar">
+    <div class="urgency-track" id="urgencyTrack">
+      <div class="urgency-slide">🔥 OFERTA RELÂMPAGO — Só mais <span class="urg-timer" id="urgTimer1">15:00</span> para garantir acesso Vitalício por apenas R$9,90!</div>
+      <div class="urgency-slide">⚡ Últimas vagas disponíveis! <span class="urg-highlight">+9.500 pessoas</span> já estão assistindo agora</div>
+      <div class="urgency-slide">💎 Acesso VITALÍCIO por R$9,90 — Pagamento único, sem mensalidades, sem pegadinha</div>
+      <div class="urgency-slide">⏰ Oferta encerra em <span class="urg-timer" id="urgTimer2">15:00</span> — Não perca essa chance única!</div>
+      <div class="urgency-slide">🎬 +100 séries que você NÃO encontra na Netflix. Garanta agora antes que a promoção acabe!</div>
+      <div class="urgency-slide">🔥 OFERTA RELÂMPAGO — Só mais <span class="urg-timer">15:00</span> para garantir acesso Vitalício por apenas R$9,90!</div>
+      <div class="urgency-slide">⚡ Últimas vagas disponíveis! <span class="urg-highlight">+9.500 pessoas</span> já estão assistindo agora</div>
+      <div class="urgency-slide">💎 Acesso VITALÍCIO por R$9,90 — Pagamento único, sem mensalidades, sem pegadinha</div>
+      <div class="urgency-slide">⏰ Oferta encerra em <span class="urg-timer">15:00</span> — Não perca essa chance única!</div>
+      <div class="urgency-slide">🎬 +100 séries que você NÃO encontra na Netflix. Garanta agora antes que a promoção acabe!</div>
+    </div>
+  </div>
+
   <!-- ─── CATALOG ─── -->
   <section style="background:#0a0a0a; padding: 56px 0 64px;">
     <div style="text-align:center; margin-bottom: 40px; padding: 0 24px;">
       <div style="display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#e91e8c; margin-bottom:14px;">
-        <span style="width:24px;height:2px;background:#e91e8c;display:inline-block;border-radius:2px;"></span> CATÁLOGO
+        CATÁLOGO
       </div>
       <h2 style="color:#fff; font-size:clamp(1.8rem,4vw,2.4rem); font-weight:900; letter-spacing:-0.5px; margin-bottom:8px;">O mais completo do Brasil</h2>
       <p style="color:rgba(255,255,255,0.45); font-size:15px;">+100 séries atualizados diariamente para você nunca ficar sem assistir.</p>
@@ -2088,9 +2099,9 @@
       <p class="section-sub fade-up">Benefícios exclusivos que você não encontra em nenhum outro lugar</p>
       <div class="benefits-grid">
         <div class="benefit-card fade-up">
-          <div class="benefit-icon">🔄</div>
-          <div class="benefit-title">Atualizações Diárias</div>
-          <p class="benefit-desc">Novos títulos adicionados todo dia. Sempre algo novo para assistir, nunca ficará sem opções.</p>
+          <div class="benefit-icon">💬</div>
+          <div class="benefit-title">Grupo Exclusivo VIP</div>
+          <p class="benefit-desc">Acesso ao grupo privado onde você pode solicitar mini séries e doramas diretamente. Sua série favorita a um pedido de distância.</p>
         </div>
         <div class="benefit-card fade-up">
           <div class="benefit-icon">🔥</div>
@@ -2120,23 +2131,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ─── URGENCY BAR ─── -->
-  <div class="urgency-bar" id="urgencyBar">
-    <div class="urgency-track" id="urgencyTrack">
-      <div class="urgency-slide">🔥 OFERTA RELÂMPAGO — Só mais <span class="urg-timer" id="urgTimer1">15:00</span> para garantir acesso Vitalício por apenas R$9,90!</div>
-      <div class="urgency-slide">⚡ Últimas vagas disponíveis! <span class="urg-highlight">+9.500 pessoas</span> já estão assistindo agora</div>
-      <div class="urgency-slide">💎 Acesso VITALÍCIO por R$9,90 — Pagamento único, sem mensalidades, sem pegadinha</div>
-      <div class="urgency-slide">⏰ Oferta encerra em <span class="urg-timer" id="urgTimer2">15:00</span> — Não perca essa chance única!</div>
-      <div class="urgency-slide">🎬 +100 séries que você NÃO encontra na Netflix. Garanta agora antes que a promoção acabe!</div>
-      <!-- duplicar para loop infinito -->
-      <div class="urgency-slide">🔥 OFERTA RELÂMPAGO — Só mais <span class="urg-timer">15:00</span> para garantir acesso Vitalício por apenas R$9,90!</div>
-      <div class="urgency-slide">⚡ Últimas vagas disponíveis! <span class="urg-highlight">+9.500 pessoas</span> já estão assistindo agora</div>
-      <div class="urgency-slide">💎 Acesso VITALÍCIO por R$9,90 — Pagamento único, sem mensalidades, sem pegadinha</div>
-      <div class="urgency-slide">⏰ Oferta encerra em <span class="urg-timer">15:00</span> — Não perca essa chance única!</div>
-      <div class="urgency-slide">🎬 +100 séries que você NÃO encontra na Netflix. Garanta agora antes que a promoção acabe!</div>
-    </div>
-  </div>
 
   <!-- ─── TRENDING SERIES ─── -->
   <section class="trending-section">
@@ -2463,7 +2457,7 @@
     }
 
     const barEnd = getTimerEnd('kdrama_bar_timer', 47);
-    const popupEnd = getTimerEnd('kdrama_popup_timer', 23);
+    const popupEnd = getTimerEnd('kdrama_popup_timer_v2', 15);
     const urgEnd = getTimerEnd('kdrama_urg_timer', 15);
 
     function updateCountdown() {
@@ -2477,15 +2471,12 @@
       const barEl = document.getElementById('countdown');
       if (barEl) barEl.textContent = `${bh}h ${bm}m ${bs}s`;
 
-      // Popup
-      const pDiff = popupEnd - now;
-      const ph = Math.max(0, Math.floor(pDiff / 3600000)).toString().padStart(2, '0');
-      const pm = Math.max(0, Math.floor((pDiff % 3600000) / 60000)).toString().padStart(2, '0');
-      const ps = Math.max(0, Math.floor((pDiff % 60000) / 1000)).toString().padStart(2, '0');
-      const popH = document.getElementById('popup-h');
+      // Popup — só min:seg (15 min)
+      const pDiff = Math.max(0, popupEnd - now);
+      const pm = Math.floor(pDiff / 60000).toString().padStart(2, '0');
+      const ps = Math.floor((pDiff % 60000) / 1000).toString().padStart(2, '0');
       const popM = document.getElementById('popup-m');
       const popS = document.getElementById('popup-s');
-      if (popH) popH.textContent = ph;
       if (popM) popM.textContent = pm;
       if (popS) popS.textContent = ps;
     }
